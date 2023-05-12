@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id             String       @id @default(auto()) @map("_id") @db.ObjectId
+    sudoCustomerID String
+    firstName      String
+    lastName       String
+    email          String       @unique
+    phoneNumber    String
+    dob            DateTime
+    customerType   CustomerType @default(INDIVIDUAL)
+    companyName    String?
+    address1       String
+    address2       String?
+    city           String
+    state          String
+    country        String
+    postalCode     String
+    pin            String
+    bvnVerified    Boolean      @default(false)
+    wallet         Wallet?
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+}
+
+model Wallet {
+    id           String   @id @default(auto()) @map("_id") @db.ObjectId
+    sudoWalletID String
+    user         User?    @relation(fields: [userId], references: [id])
+    userId       String?  @unique
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+}
+
+enum CustomerType {
+    INDIVIDUAL
+    COMPANY
+}

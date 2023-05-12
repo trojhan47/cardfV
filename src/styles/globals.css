@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Museo-Sans-Rounded-100";
+  src: url("../fonts/MuseoSansRounded100.otf");
+}
+@font-face {
+  font-family: "Museo-Sans-Rounded-300";
+  src: url("../fonts/MuseoSansRounded300.otf");
+}
+@font-face {
+  font-family: "Museo-Sans-Rounded-500";
+  src: url("../fonts/MuseoSansRounded500.otf");
+}
+@font-face {
+  font-family: "Museo-Sans-Rounded-700";
+  src: url("../fonts/MuseoSansRounded700.otf");
+}
+
+iframe[name="cardNoIframe"],
+iframe[name="cardCvvIframe"],
+iframe[name="cardPinIframe"] {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  border: 0px solid transparent;
+  width: 280px;
+  height: 20px;
+}
+
+.loadmore > span {
+  @apply bg-getly-blue;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+.loadmore > span:nth-child(2) {
+  @apply bg-getly-red;
+  animation-delay: 0.2s;
+}
+.loadmore > span:nth-child(3) {
+  @apply bg-getly-green;
+  animation-delay: 0.4s;
+}
+.loadmore > span:nth-child(4) {
+  @apply bg-getly-yellow;
+  animation-delay: 0.6s;
+}
+
+@keyframes bouncing-loader {
+  from {
+    @apply opacity-100;
+    transform: translate3d(0);
+  }
+  to {
+    opacity: 0.1;
+    transform: translate3d(1rem, 0rem, 1rem);
+    /* transform: translate3d(0, -1rem, 0); */
+  }
+}
